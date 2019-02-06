@@ -8,9 +8,9 @@ from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, Slider, Select, Range1d, TextInput, Spacer
 from bokeh.plotting import Figure, curdoc
 
-pd=cdll.LoadLibrary("./libprobdet.dylib")
-pd.probdet.argtypes=[c_float, c_float, c_float, c_float]
-pd.probdet.restype=c_float
+pd=cdll.LoadLibrary("./libprobdet_double.dylib")
+pd.probdet.argtypes=[c_double, c_double, c_double, c_double]
+pd.probdet.restype=c_double
 
 pfa=TextInput(title='False Alarm Probability', value='1e-6')
 slider1 = Slider(start=1, end=10, value=1, step=1, title="Number of Pulses")
