@@ -5,7 +5,7 @@ from scipy.stats import gamma
 import numpy as np
 
 from bokeh.layouts import column
-from bokeh.models import ColumnDataSource, Slider, Select, Range1d, TextInput, Spacer
+from bokeh.models import ColumnDataSource, Slider, Select, Range1d, TextInput, Spacer, HoverTool
 from bokeh.plotting import Figure, curdoc
 
 pd=cdll.LoadLibrary("./libprobdet_double.dylib")
@@ -33,7 +33,11 @@ PDseries=vprobdet(N,Yb,K,xdBseries)
 source=ColumnDataSource(data=dict(snr=xdBseries, pd=PDseries))
 
 plot = Figure(plot_width=435, plot_height=400)
+
 plot.line('snr','pd',source=source)
+
+hover=HoverTool(tooltips=[("SNR","@snr"),("Pd","@pd")],mode='vline')
+plot.add_tools(hover)
 
 plot.x_range=Range1d(-10 , 40)
 
