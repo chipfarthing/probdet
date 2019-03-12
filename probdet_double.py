@@ -8,7 +8,7 @@ from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, Slider, Select, Range1d, TextInput, Spacer, HoverTool
 from bokeh.plotting import Figure, curdoc
 
-pd=cdll.LoadLibrary("./libprobdet_double.dylib")
+pd=cdll.LoadLibrary("./libprobdet_double.so")
 pd.probdet.argtypes=[c_double, c_double, c_double, c_double]
 pd.probdet.restype=c_double
 
